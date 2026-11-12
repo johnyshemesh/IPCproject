@@ -7,11 +7,7 @@ export class LoginPage {
     this.loginButton = page.getByRole('button', { name: 'Login' })
     }
 
-    async openPage (url) {
-        await this.page.goto(url)
-    }
-    
-
+   
     async login(username, password) {
        await this.usernameField.fill(username)
         await this.passwordField.fill(password)
