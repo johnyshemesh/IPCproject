@@ -69,6 +69,7 @@ test.describe('login with valid credentials', () => {
         await expect(inventoryPage.title).toHaveText('Products');
     })
     test('successful login with (performance_glitch_user)', async ({ page }) => {
+        test.setTimeout(10000);
         await loginPage.login(PERFORMANCE_GLITCH_USER.username, PERFORMANCE_GLITCH_USER.password);
         await expect(page).toHaveURL(URLS.inventoryPage);
         await expect(inventoryPage.title).toHaveText('Products');
