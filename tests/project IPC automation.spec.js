@@ -69,9 +69,8 @@ test.describe('login with valid credentials', () => {
         await expect(inventoryPage.title).toHaveText('Products');
     })
     test('successful login with (performance_glitch_user)', async ({ page }) => {
-        test.setTimeout(10000);
         await loginPage.login(PERFORMANCE_GLITCH_USER.username, PERFORMANCE_GLITCH_USER.password);
-        await expect(page).toHaveURL(URLS.inventoryPage);
+        await expect(page).toHaveURL(URLS.inventoryPage,{ timeout: 15000 });
         await expect(inventoryPage.title).toHaveText('Products');
     });
     test('successful login with (error_user)', async ({ page }) => {
@@ -127,7 +126,7 @@ test.describe('login with invalid credentials', () => {
         await expect(ipcProjectLocators.ErrorMessage).toHaveText('Epic sadface: Username is required');
 
     })
-    test('Login with invalid username empty Password', async ({ page }) => {
+    test('Login with valid username and empty Password', async ({ page }) => {
         await loginPage.login(VISUAL_USER.username, '');
         await expect(ipcProjectLocators.ErrorMessage).toHaveText('Epic sadface: Password is required');
 
